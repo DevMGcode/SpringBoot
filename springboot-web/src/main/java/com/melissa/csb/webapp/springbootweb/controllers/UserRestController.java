@@ -1,6 +1,9 @@
 package com.melissa.csb.webapp.springbootweb.controllers;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +33,23 @@ public class UserRestController {
     userDto.setUser(user);
     userDto.setTitle("Hola Spring-Boot");
     return userDto;//nombre de la vista a renderizar
+  }
+
+  @GetMapping("/list")
+  public List <User> list(){//lista de objetos
+    User user = new User("Melissa", "Garcia");
+    User user2 = new User("Lina", "Marquez");
+    User user3 = new User("carolina", "Narvaez");
+
+    List <User> users = Arrays.asList(user,user2,user3);
+/*  List <User> users = new ArrayList<>(); // se crea una nueva lista que contendrá los objetos de tipo User
+    users.add(user);                      // se utiliza la interfaz 'List' y la implementacion concreta 'Arraylist'
+    users.add(user2);
+    users.add(user3); */
+
+    return users;
+    //define un método que crea tres objetos User, 
+    //los agrega a una lista y luego devuelve esa lista
   }
 
 
