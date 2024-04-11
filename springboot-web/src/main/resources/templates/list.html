@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
-    <title th: text ="${title}"></title>
-  </head>
-  <body>
-    
-    <h1 th: text ="${title}"></h1>
-    <div th:if="${users.size() == 0}"> No tiene elementos usuarios! </div>
+    <title th:text="${title}"></title>
+</head>
+<body>
 
-    <script src="" async defer></script>
-  </body>
+<h1 th:text="${title}"></h1>
+<div th:if="${users.isEmpty()}" th:text="${'No tiene elementos usuarios!'}"></div>
+
+<table class="table" th:if="${not users.isEmpty()}" >
+  <thead>    
+    <tr>
+      <th>name</th>
+      <th>lastname</th>
+      <th>email</th>
+    </tr>    
+  </thead>
+  <tbody>
+    <tr th:each="user: ${users}">
+      <td th:text="${user.name}"></td>
+      <td th:text="${user.lastname}"></td>
+      <td th:if="${user.email}"  th:text="${user.email}"></td>
+      <td th:if="${user.email==null}"  th:text="${' - '}"></td>
+    </tr>
+  </tbody>    
+</table>
+
+<script src="" async defer></script>
+</body>
 </html>
