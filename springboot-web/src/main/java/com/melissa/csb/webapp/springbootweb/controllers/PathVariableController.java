@@ -4,6 +4,7 @@ import com.melissa.csb.webapp.springbootweb.dto.ParamDto;
 import com.melissa.csb.webapp.springbootweb.models.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +29,17 @@ public class PathVariableController {
 */
 
   @Value("${config.listOfValues}")
-  private String listOfValues;
-
+  private List<String> listOfValues;//automatica
+  //private String [] listOfValues;
+  
   @Value("${config.code}")
   private String code;
-
-
+  
+  @Value("#{'${config.listOfValues}'.toUpperCase().split(',')}")//string en arreglo-manual
+  private List<String> valueList;
+  
+  @Value("#{'${config.listOfValues}'.toUpperCase()}")//string en arreglo-manual
+  private String valueString;
 
   @GetMapping("/baz/{message}")
   public ParamDto baz(@PathVariable String message) {
@@ -79,6 +85,8 @@ public class PathVariableController {
     json.put("code", code);
     json.put("message", message);
     json.put("listOfValues", listOfValues);
+    json.put("valueList", valueList);
+    json.put("valueString", valueString);
     return json;
     //localhost:8090/api/var/values
   }
