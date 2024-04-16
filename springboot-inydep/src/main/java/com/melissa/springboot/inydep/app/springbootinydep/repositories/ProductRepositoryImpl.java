@@ -2,24 +2,27 @@ package com.melissa.springboot.inydep.app.springbootinydep.repositories;
 import java.util.Arrays;
 import java.util.List;
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
+import com.melissa.springboot.inydep.app.springbootinydep.services.ProductRepository;
 
-public class ProductRepository {
+public class ProductRepositoryImpl implements ProductRepository{
   // Lista que almacena los productos
   private List<Product> data;
 
   // Constructor de la clase que inicializa la lista 'data' con algunos productos
-  public ProductRepository() {
+  public ProductRepositoryImpl() {
     this.data=Arrays.asList(new Product(1L,"Memoria Kinstom 54",300L),
     new Product(2L,"CPU intel core i9",850L),
     new Product(3L,"Teclado Racer",180L),
     new Product(4L,"Lapto Lenovo",490L));
   }
   
+  @Override
   // Método para obtener todos los productos en el repositorio
   public List<Product> findALL(){
     return data;
   }
-
+  
+  @Override
   public Product findById(Long id){
     // Inicia un flujo sobre la lista de productos 'data'
     return data.stream()
