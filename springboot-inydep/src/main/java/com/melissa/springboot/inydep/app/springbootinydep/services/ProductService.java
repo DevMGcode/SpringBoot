@@ -14,8 +14,9 @@ public class ProductService {
     return repository.findALL().stream().map( p-> {
     // Se calcula el precio con un impuesto del 25% y se establece en el producto
     Double priceImp= p.getPrice()* 1.25d;
-    p.setPrice(priceImp.longValue());// Se establece el nuevo precio en el producto
-    return  p;
+    Product newProd= new Product(p.getId(),p.getName(),priceImp.longValue());
+    //p.setPrice(priceImp.longValue());// Se establece el nuevo precio en el producto
+    return  newProd;
     }).collect(Collectors.toList());// Se recolectan los productos modificados en una lista y se devuelve
   }
 
