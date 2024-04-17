@@ -37,6 +37,10 @@ public class ProductServiceImpl implements ProductService{
     Product newProd = (Product) p.clone(); // Crea una copia del producto actual para evitar modificar el original
     newProd.setPrice(priceTax.longValue()); // Establece el precio modificado en la copia del producto
     return newProd;// Devuelve la copia del producto con el precio modificado
+    
+    //p.setPrice(priceTax.longValue()); RequestScope
+    //return p; RequestScope
+
     }).collect(Collectors.toList());// Se recolectan los productos modificados en una lista y se devuelve
   }
 
