@@ -1,12 +1,17 @@
 package com.melissa.springboot.inydep.app.springbootinydep.services;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
 import com.melissa.springboot.inydep.app.springbootinydep.repositories.ProductRepositoryImpl;
 
+@Component
 public class ProductServiceImpl implements ProductService{
 // Se crea una instancia del repositorio de productos para acceder a los datos
-  private ProductRepositoryImpl repository = new ProductRepositoryImpl();
+  @Autowired //inyecta la instancia
+  private ProductRepositoryImpl repository;
   
   @Override
   // Método para obtener todos los productos
@@ -21,7 +26,7 @@ public class ProductServiceImpl implements ProductService{
     return newProd;// Devuelve la copia del producto con el precio modificado
     }).collect(Collectors.toList());// Se recolectan los productos modificados en una lista y se devuelve
   }
-  
+
   @Override
   public Product  findById(Long id){
     return repository.findById(id);

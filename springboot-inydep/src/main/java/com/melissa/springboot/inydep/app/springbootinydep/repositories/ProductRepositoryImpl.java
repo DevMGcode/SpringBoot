@@ -1,9 +1,11 @@
 package com.melissa.springboot.inydep.app.springbootinydep.repositories;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.stereotype.Component;
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
 import com.melissa.springboot.inydep.app.springbootinydep.services.ProductRepository;
 
+@Component
 public class ProductRepositoryImpl implements ProductRepository{
   // Lista que almacena los productos
   private List<Product> data;
@@ -21,7 +23,7 @@ public class ProductRepositoryImpl implements ProductRepository{
   public List<Product> findALL(){
     return data;
   }
-  
+
   @Override
   public Product findById(Long id){
     // Inicia un flujo sobre la lista de productos 'data'
