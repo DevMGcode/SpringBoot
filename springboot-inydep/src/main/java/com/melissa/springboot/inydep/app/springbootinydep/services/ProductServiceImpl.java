@@ -34,12 +34,13 @@ public class ProductServiceImpl implements ProductService{
     // Se calcula el precio con un impuesto del 25% y se establece en el producto
     Double priceTax= p.getPrice()* 1.25d;
     //Product newProd = new Product(p.getId(),p.getName(), priceTax.longValue)
-    Product newProd = (Product) p.clone(); // Crea una copia del producto actual para evitar modificar el original
-    newProd.setPrice(priceTax.longValue()); // Establece el precio modificado en la copia del producto
-    return newProd;// Devuelve la copia del producto con el precio modificado
     
-    //p.setPrice(priceTax.longValue()); RequestScope
-    //return p; RequestScope
+    //Product newProd = (Product) p.clone(); // Crea una copia del producto actual para evitar modificar el original
+    //newProd.setPrice(priceTax.longValue()); // Establece el precio modificado en la copia del producto
+    //return newProd;// Devuelve la copia del producto con el precio modificado
+    
+    p.setPrice(priceTax.longValue()); 
+    return p; 
 
     }).collect(Collectors.toList());// Se recolectan los productos modificados en una lista y se devuelve
   }
