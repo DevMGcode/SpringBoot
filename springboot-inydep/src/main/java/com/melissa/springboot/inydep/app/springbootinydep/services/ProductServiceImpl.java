@@ -5,13 +5,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
-import com.melissa.springboot.inydep.app.springbootinydep.repositories.ProductRepositoryImpl;
 
 @Component
 public class ProductServiceImpl implements ProductService{
 // Se crea una instancia del repositorio de productos para acceder a los datos
-  @Autowired //inyecta la instancia
-  private ProductRepositoryImpl repository;
+  @Autowired //inyecta la instancia a la interface
+  private ProductRepository repository;
   
   @Override
   // Método para obtener todos los productos
