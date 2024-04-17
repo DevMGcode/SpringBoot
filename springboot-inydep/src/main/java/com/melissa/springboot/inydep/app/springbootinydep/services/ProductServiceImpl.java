@@ -1,6 +1,8 @@
 package com.melissa.springboot.inydep.app.springbootinydep.services;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
 
@@ -8,6 +10,9 @@ import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
 public class ProductServiceImpl implements ProductService{
   // Se crea una instancia del repositorio de productos para acceder a los datos
   //inyecta la instancia a la interface
+
+  //@Autowired
+  //@Qualifier("productList")
   private ProductRepository repository;
   
   //@Autowired
@@ -15,9 +20,10 @@ public class ProductServiceImpl implements ProductService{
     //  this.repository = repository;
     //}
     
-    public ProductServiceImpl(ProductRepository repository) {
-      this.repository = repository;
-    }
+
+   public ProductServiceImpl(@Qualifier("productList")ProductRepository repository) {
+     this.repository = repository;
+   }
     
   
   @Override
