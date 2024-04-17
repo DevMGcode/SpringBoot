@@ -1,11 +1,13 @@
 package com.melissa.springboot.inydep.app.springbootinydep.repositories;
 import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
 import com.melissa.springboot.inydep.app.springbootinydep.services.ProductRepository;
-
+@Primary
 @Repository
 public class ProductRepositoryImpl implements ProductRepository{
   // Lista que almacena los productos
