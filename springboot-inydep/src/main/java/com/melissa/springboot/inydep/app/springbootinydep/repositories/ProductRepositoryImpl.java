@@ -4,12 +4,12 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 //import org.springframework.web.context.annotation.RequestScope;
 //import org.springframework.web.context.annotation.SessionScope;
-import org.springframework.web.context.annotation.SessionScope;
+//import org.springframework.web.context.annotation.SessionScope;
 
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
 import com.melissa.springboot.inydep.app.springbootinydep.services.ProductRepository;
 
-@SessionScope
+//@SessionScope
 @Repository("productList")
 public class ProductRepositoryImpl implements ProductRepository{
   // Lista que almacena los productos

@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Service;
 import com.melissa.springboot.inydep.app.springbootinydep.models.Product;
 
@@ -13,17 +15,20 @@ public class ProductServiceImpl implements ProductService{
 
   //@Autowired
   //@Qualifier("productList")
-  private ProductRepository repository;
   
   //@Autowired
   //public void setRepository(ProductRepository repository) {
     //  this.repository = repository;
     //}
     
+    private ProductRepository repository;
+    
+    @Value("${config.price.tax}")
+    private Double tax;
 
-   public ProductServiceImpl(@Qualifier("productList")ProductRepository repository) {
-     this.repository = repository;
-   }
+    public ProductServiceImpl(@Qualifier("productList")ProductRepository repository) {
+    this.repository = repository;
+  }
     
   
   @Override
@@ -32,15 +37,16 @@ public class ProductServiceImpl implements ProductService{
     // Se obtiene la lista de productos del repositorio y se aplica una operación de mapeo para modificar cada producto
     return repository.findALL().stream().map( p-> {
     // Se calcula el precio con un impuesto del 25% y se establece en el producto
-    Double priceTax= p.getPrice()* 1.25d;
+    
+    Double priceTax = p.getPrice() * tax;
     //Product newProd = new Product(p.getId(),p.getName(), priceTax.longValue)
     
-    //Product newProd = (Product) p.clone(); // Crea una copia del producto actual para evitar modificar el original
-    //newProd.setPrice(priceTax.longValue()); // Establece el precio modificado en la copia del producto
-    //return newProd;// Devuelve la copia del producto con el precio modificado
+    Product newProd = (Product) p.clone(); // Crea una copia del producto actual para evitar modificar el original
+    newProd.setPrice(priceTax.longValue()); // Establece el precio modificado en la copia del producto
+    return newProd;// Devuelve la copia del producto con el precio modificado
     
-    p.setPrice(priceTax.longValue()); 
-    return p; 
+    //p.setPrice(priceTax.longValue()); 
+    //return p; 
 
     }).collect(Collectors.toList());// Se recolectan los productos modificados en una lista y se devuelve
   }
