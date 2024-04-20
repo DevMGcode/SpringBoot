@@ -2,6 +2,17 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Spring Boot-SpringbootInydepApplication<springboot-inydep>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.melissa.springboot.inydep.app.springbootinydep.SpringbootInydepApplication",
+      "projectName": "springboot-inydep",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=51870 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=springboot-inydep"
+    },
+    {
+      "type": "java",
       "name": "Spring Boot-SpringbootWebApplication<springboot-web>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
