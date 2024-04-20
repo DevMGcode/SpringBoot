@@ -33,6 +33,10 @@ public class Invoice {
     this.items = items;
   }
 
+  public int getTotal(){
+    return 0;
+  }
+
   
 
 }

@@ -11,7 +11,7 @@ import com.melissa.springboot.inydep.factura.springbootinydepfactura.models.Item
 import com.melissa.springboot.inydep.factura.springbootinydepfactura.models.Product;
 
 @Configuration
-@PropertySource("classpath: data.properties")
+@PropertySource(value="classpath:data.properties", encoding = "UTF-8")
 public class AppConfig {
 
   @Bean

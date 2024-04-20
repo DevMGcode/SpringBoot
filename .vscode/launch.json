@@ -20,6 +20,16 @@
       "projectName": "springboot-web",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringbootInydepfacturaApplication<springboot-inydepfactura>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.melissa.springboot.inydep.factura.springbootinydepfactura.SpringbootInydepfacturaApplication",
+      "projectName": "springboot-inydepfactura",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
