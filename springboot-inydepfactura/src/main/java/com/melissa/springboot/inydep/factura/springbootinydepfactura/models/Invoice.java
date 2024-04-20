@@ -11,6 +11,7 @@ public class Invoice {
   private Client client;
   @Value("${invoice.description}")
   private String description;
+  @Autowired
   private List<Item>items;
 
   public Client getClient() {
