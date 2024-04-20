@@ -3,15 +3,17 @@ package com.melissa.springboot.inydep.factura.springbootinydepfactura.models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 @Component
 public class Invoice {
   @Autowired
   private Client client;
-  @Value("${invoice.description}")
+  @Value("${invoice.description.office}")
   private String description;
   @Autowired
+  @Qualifier("default")//nombre del metodo
   private List<Item>items;
 
   public Client getClient() {
