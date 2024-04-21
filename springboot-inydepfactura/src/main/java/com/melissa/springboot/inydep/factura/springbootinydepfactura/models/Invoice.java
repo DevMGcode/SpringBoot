@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 @Component
 public class Invoice {
   @Autowired
@@ -23,7 +24,11 @@ public class Invoice {
     System.out.println("Creando el componente de la factura");
     client.setName(client.getName().concat(" Melissa "));
     description=description.concat(" del cliente: ").concat(client.getName()).concat(client.getLastaname());
+  }
 
+  @PreDestroy
+  public void destroy(){
+    System.out.println("Destruyendo el componente o bean invoice");
   }
 
   public Client getClient() {
