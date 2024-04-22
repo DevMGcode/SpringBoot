@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Component
 @RequestScope
