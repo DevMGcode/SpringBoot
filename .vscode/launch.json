@@ -30,6 +30,16 @@
       "projectName": "springboot-inydepfactura",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringbootErrorApplication<springboot-error>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.melissa.springboot.error.springbooterror.SpringbootErrorApplication",
+      "projectName": "springboot-error",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
