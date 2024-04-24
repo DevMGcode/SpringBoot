@@ -1,4 +1,5 @@
 package com.melissa.springboot.error.springbooterror.controllers;
+import com.melissa.springboot.error.springbooterror.exceptions.UserNotFoundException;
 import com.melissa.springboot.error.springbooterror.models.Error;
 import java.util.Date;
 import java.util.HashMap;
@@ -6,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -32,6 +34,18 @@ public class HandlerExceptionController {
     Map<String, Object> error = new HashMap<>();
     error.put("date", new Date());
     error.put("error","numero invalido");
+    error.put("message",ex.getMessage());
+    error.put("status",HttpStatus.INTERNAL_SERVER_ERROR.value());
+    return error;
+  }
+
+  @ExceptionHandler({NullPointerException.class,HttpMessageNotWritableException.class, UserNotFoundException.class})
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public Map<String,Object> userNotFoundException(Exception ex){
+
+    Map<String, Object> error = new HashMap<>();
+    error.put("date", new Date());
+    error.put("error","El usuario o rol no existe");
     error.put("message",ex.getMessage());
     error.put("status",HttpStatus.INTERNAL_SERVER_ERROR.value());
     return error;
