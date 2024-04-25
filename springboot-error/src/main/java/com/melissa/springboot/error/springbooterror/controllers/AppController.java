@@ -1,5 +1,6 @@
 package com.melissa.springboot.error.springbooterror.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,11 +28,11 @@ public class AppController {
 
   @GetMapping("/view/{id}")
   //localhost:8080/app/view/1
+
   public User view(@PathVariable(name="id")Long id){
-    User user = service.findById(id);
-    if(user== null){
-      throw new UserNotFoundException("Error el usuario no existe");
-    }
+    
+    User user = service.findById(id).orElseThrow(()-> new UserNotFoundException("Error el usuario no existe"));
+
     System.out.println(user.getLastname());
     return user;
   }

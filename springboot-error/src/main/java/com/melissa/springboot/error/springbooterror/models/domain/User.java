@@ -43,9 +43,9 @@ public class User {
   public Role getRole() {
     return role;
   }
-  public String getRoleName() {
+ /*  public String getRoleName() {
     return role.getName();
-  }
+  } */
 
 
   public void setRole(Role role) {
