@@ -40,6 +40,16 @@
       "projectName": "springboot-error",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringbootInterceptorApplication<springboot-interceptor>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.melissa.springboot.app.interceptor.springbootinterceptor.SpringbootInterceptorApplication",
+      "projectName": "springboot-interceptor",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
