@@ -50,6 +50,16 @@
       "projectName": "springboot-interceptor",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringbootHorarioApplication<springboot-horario>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.melissa.springboot.calendar.interceptor.springboothorario.SpringbootHorarioApplication",
+      "projectName": "springboot-horario",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
