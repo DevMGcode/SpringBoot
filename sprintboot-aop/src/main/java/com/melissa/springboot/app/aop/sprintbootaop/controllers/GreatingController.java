@@ -14,10 +14,11 @@ import com.melissa.springboot.app.aop.sprintbootaop.services.GreetingService;
 public class GreatingController {
 
   @Autowired
-  private GreetingService greeatingService;
+  private GreetingService greetingService;
+
   @GetMapping("/greeting")
   public ResponseEntity <?> greeting(){
 
-    return ResponseEntity.ok(Collections.singletonMap("greeting", greeatingService.sayHello("Meli", "Hola que tal!")));
+    return ResponseEntity.ok(Collections.singletonMap("greeting", greetingService.sayHello("Meli", "Hola que tal!")));
   }
 }
