@@ -60,6 +60,16 @@
       "projectName": "springboot-horario",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SprintbootAopApplication<sprintboot-aop>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.melissa.springboot.app.aop.sprintbootaop.SprintbootAopApplication",
+      "projectName": "sprintboot-aop",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
