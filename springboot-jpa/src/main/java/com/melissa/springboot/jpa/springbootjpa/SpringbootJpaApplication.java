@@ -1,6 +1,7 @@
 package com.melissa.springboot.jpa.springbootjpa;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +24,19 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		findOne();
+	}
+
+	public void findOne(){
+	/* 	Person person=null;
+		Optional<Person> optionalPerson= repository.findById(2L);
+		if(optionalPerson.isPresent()){
+			person=optionalPerson.get();
+		}
+		System.out.println(person); */
+		repository.findById(3L).ifPresent(System.out::println);
+	}
+	public void list(){
 		//List<Person> persons = (List<Person>) repository.findAll();
 		//List<Person> persons = (List<Person>) repository.buscarByProgrammingLanguage("Java","Lina");
 		List<Person> persons = (List<Person>) repository.findByProgrammingLanguageAndName("Java","Lina");
