@@ -34,7 +34,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 			person=optionalPerson.get();
 		}
 		System.out.println(person); */
-		repository.findById(3L).ifPresent(System.out::println);
+		repository.findByNameContaining("ria").ifPresent(System.out::println);
 	}
 	public void list(){
 		//List<Person> persons = (List<Person>) repository.findAll();
