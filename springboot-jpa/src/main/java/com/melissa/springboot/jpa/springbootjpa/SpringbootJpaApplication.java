@@ -26,7 +26,23 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		personalizedQueries();
+		personalizedQueries2();
+	}
+
+	@Transactional(readOnly = true)
+	public void personalizedQueries2(){
+
+		
+		System.out.println("========================= Consulta por objeto persona y lenguaje de programación =========================");
+		List<Object[]> personsRegs = repository.findAllMixPerson();
+
+		personsRegs.forEach(reg->{
+			System.out.println("programmingLanguage="+ reg[1] + ", persona=" + reg[0]);
+		});
+
+		System.out.println("Consulta que llena y devuelve objeto entity de una instancia personalizada");
+		List<Person> persons = repository.findAllObjecPersonPersonalized();
+		persons.forEach(System.out::println);
 	}
 
 	@Transactional(readOnly = true)
