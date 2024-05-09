@@ -37,15 +37,23 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.println("ingrese el id para el nombre:");
 		Long id= scanner.nextLong();
 		scanner.close();
-
+		System.out.println("=======mostrando solo el nombre:=======");
 		String name= repository.getNameById(id);
 		System.out.println(name);
-
+		System.out.println("======mostrando solo el id:=======");
 		Long idDb= repository.getIdById(id);
 		System.out.println(idDb);
-
+		System.out.println("======mostrando  nombre completo con concat:======");
 		String fullname= repository.getFullNameById(id);
 		System.out.println(fullname);
+
+		System.out.println("======Consultas por campos personalizados por el  id =======");
+		Object[] personReg = (Object[]) repository.obtenerPersonDataById(id);
+		System.out.println("id="+personReg[0]+", Nombre="+ personReg[1]+", Apellido=" +  personReg[2] +", Lenguaje=" + personReg[3]);
+
+		System.out.println("=====Consultas por campos personalizados lista=====");
+		List<Object[]>regs= repository.obtenerPersonDataList();
+		regs.forEach(reg->System.out.println("id="+reg[0]+", Nombre="+ reg[1]+", Apellido=" +  reg[2] +", Lenguaje=" + reg[3]));
 	}
 
 	@Transactional
