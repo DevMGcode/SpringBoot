@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.melissa.springboot.jpa.springbootjpa.dto.PersonDto;
 import com.melissa.springboot.jpa.springbootjpa.entities.Person;
 import com.melissa.springboot.jpa.springbootjpa.repositories.PersonRepository;
 
@@ -43,6 +44,10 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.println("Consulta que llena y devuelve objeto entity de una instancia personalizada");
 		List<Person> persons = repository.findAllObjecPersonPersonalized();
 		persons.forEach(System.out::println);
+
+		System.out.println("Consulta que llena y devuelve objeto Dto de una clase personalizada");
+		List<PersonDto> personDto= repository.findAllPersonDto();
+		personDto.forEach(System.out::println);
 	}
 
 	@Transactional(readOnly = true)
