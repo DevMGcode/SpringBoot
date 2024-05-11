@@ -34,6 +34,15 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 
 	@Transactional(readOnly = true)
 	public void queriesFunctionAggregation(){
+
+		System.out.println("======= Consulta con el nombre mas corto =======");
+		Integer minLengthName = repository.getMinLengthName();
+		System.out.println(minLengthName);
+
+		System.out.println("======= Consulta con el nombre mas largo =======");
+		Integer maxLengthName = repository.getMaxLengthName();
+		System.out.println(maxLengthName);
+
 		System.out.println("======= Consulta con el total de registro de la tabla persona =======");
 		Long count = repository.totalPerson();
 		System.out.println(count);
@@ -43,6 +52,14 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.println("======= Consulta con el valor maximo del id =======");
 		Long max = repository.maxId(); 
 		System.out.println(max);
+
+		System.out.println("======= Consulta con el nombre y su largo =======");
+		List<Object[]> regs = repository.getPersonNameLength();
+		regs.forEach(reg->{
+			String name = (String) reg[0];
+			Integer length = (Integer) reg[1];
+			System.out.println("Name= " + name + ", length=" + length);
+		});
 	}
 
 	@Transactional(readOnly= true)
