@@ -35,13 +35,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 	@Transactional(readOnly = true)
 	public void queriesFunctionAggregation(){
 
-		System.out.println("======= Consulta con el nombre mas corto =======");
-		Integer minLengthName = repository.getMinLengthName();
-		System.out.println(minLengthName);
 
-		System.out.println("======= Consulta con el nombre mas largo =======");
-		Integer maxLengthName = repository.getMaxLengthName();
-		System.out.println(maxLengthName);
 
 		System.out.println("======= Consulta con el total de registro de la tabla persona =======");
 		Long count = repository.totalPerson();
@@ -60,6 +54,22 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 			Integer length = (Integer) reg[1];
 			System.out.println("Name= " + name + ", length=" + length);
 		});
+
+		System.out.println("======= Consulta con el nombre mas corto =======");
+		Integer minLengthName = repository.getMinLengthName();
+		System.out.println(minLengthName);
+
+		System.out.println("======= Consulta con el nombre mas largo =======");
+		Integer maxLengthName = repository.getMaxLengthName();
+		System.out.println(maxLengthName);
+
+		System.out.println("======= Consultas resumen de funciones de agregación min,max,sum,avg,count =======");
+		Object[] resumeReg= (Object[]) repository.getResumeAggregationFunction();
+		System.out.println("min=" + resumeReg[0] + 
+		", max=" + resumeReg[1] + 
+		", sum= " + resumeReg[2] + 
+		", avg=" + resumeReg[3] + 
+		", count=" + resumeReg[4]);
 	}
 
 	@Transactional(readOnly= true)
