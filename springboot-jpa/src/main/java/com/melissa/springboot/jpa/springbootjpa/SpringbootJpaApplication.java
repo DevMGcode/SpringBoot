@@ -1,5 +1,6 @@
 package com.melissa.springboot.jpa.springbootjpa;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -27,8 +28,15 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		subQueries();
+		whereIn();
 
+	}
+
+	@Transactional(readOnly = true)
+	public void whereIn(){
+		System.out.println("======= consulta where in =======");
+		List<Person> persons = repository.getPersonByIds(Arrays.asList(1L,2L,5L,7L));
+		persons.forEach(System.out::println);
 	}
 
 	@Transactional(readOnly = true)
@@ -44,6 +52,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.println("======= Consulta para obtener el ultimo registro de persona =======");
 		Optional<Person> optionalPerson = repository.getLastRegistration();
 		optionalPerson.ifPresent(System.out::println);
+
 	}
 
 	@Transactional(readOnly = true)
