@@ -10,6 +10,14 @@ import com.melissa.springboot.jpa.springbootjpa.dto.PersonDto;
 import com.melissa.springboot.jpa.springbootjpa.entities.Person;
 
 public interface PersonRepository extends CrudRepository<Person, Long>{
+  @Query("select count(p) from Person p")
+  Long totalPerson();
+
+  @Query("select min(p.id) from Person p")
+  Long minId();
+
+  @Query("select max(p.id) from Person p")
+  Long maxId();
 
   @Query("select p from Person p order by p.name, p.lastname desc")
   List<Person>getAll();
