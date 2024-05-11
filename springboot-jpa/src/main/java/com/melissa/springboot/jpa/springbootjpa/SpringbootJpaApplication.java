@@ -27,7 +27,25 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		personalizedQueriesDistinct();
+		personalizedQueriesConcatUpperAndLowerCase();
+	}
+
+	@Transactional(readOnly = true)
+	public void personalizedQueriesConcatUpperAndLowerCase(){
+		System.out.println("======= Consultas nombres y apellidos de personas =======");
+		List<String> names = repository.findAllFullNameConcat();
+		names.forEach(System.out::println);
+
+		System.out.println("======= Consulta nombres y apellidos mayuscula =======");
+		names = repository.findAllFullNameConcatUpper();
+		names.forEach(System.out::println);
+		System.out.println("======= Consulta nombres y apellidos minuscula =======");
+		names = repository.findAllFullNameConcatLower();
+		names.forEach(System.out::println);
+		System.out.println("======= Consulta personalizada persona upper y lower case =======");
+		List<Object[]> regs = repository.findAllPersonDataListCase();
+		regs.forEach(reg->System.out.println("id="+reg[0]+", Nombre="+ reg[1]+", Apellido=" +  reg[2] +", Lenguaje=" + reg[3]));
+
 	}
 
 	@Transactional(readOnly = true)
@@ -47,6 +65,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		System.out.println("======= Consulta con total de lenguajes de programación unicas =======");
 		Long totalLanguage= repository.findAllProgrammingLanguageDistinctCount();
 		System.out.println("total de lenguajes de programacion: "+ totalLanguage);
+		
 	}
 
 	@Transactional(readOnly = true)

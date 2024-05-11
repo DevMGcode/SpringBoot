@@ -11,6 +11,19 @@ import com.melissa.springboot.jpa.springbootjpa.entities.Person;
 
 public interface PersonRepository extends CrudRepository<Person, Long>{
 
+  @Query("select p.id, upper(p.name), lower(p.lastname), upper(p.programmingLanguage) from Person p")
+  List<Object[]> findAllPersonDataListCase();
+
+  //@Query("select CONCAT (p.name,' ',p.lastname) from Person p ")
+  @Query("select  upper( concat(p.name ,' ', p.lastname)) from Person p ")
+  List<String> findAllFullNameConcatUpper();
+  
+  @Query("select  lower( concat (p.name,' ',p.lastname)) from Person p ")
+  List<String> findAllFullNameConcatLower();
+
+  @Query("select  concat( p.name,' ',p.lastname) from Person p ")
+  List<String> findAllFullNameConcat();
+
   @Query("select count(distinct(p.programmingLanguage)) from Person p")
   Long findAllProgrammingLanguageDistinctCount();
 
