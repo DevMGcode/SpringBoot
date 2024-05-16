@@ -80,6 +80,16 @@
       "projectName": "springboot-jpa",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringbootJpaRelationshipApplication<springboot-jpa-relationship>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.melissa.springboot.jpa.springbootjparelationship.SpringbootJpaRelationshipApplication",
+      "projectName": "springboot-jpa-relationship",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
