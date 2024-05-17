@@ -28,7 +28,32 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		removeAddress();
+		removeAddressFindById();
+	}
+
+	@Transactional
+	public void removeAddressFindById(){
+		Optional<Client> optionalClient= clientRepository.findById(2L);
+		optionalClient.ifPresent(client->{
+			
+			Address address1 = new Address("La Luna",1234);
+			Address address2 = new Address("Vasco de lima",9874);
+			
+			client.setAddresses(Arrays.asList(address1,address2));
+			clientRepository.save(client);
+			System.out.println(client);
+
+			Optional<Client> optionalClient2 = clientRepository.findOne(2L);
+			optionalClient2.ifPresent(c->{
+				c.getAddresses().remove(address2);
+				clientRepository.save(c);
+				System.out.println(c);
+			});
+
+
+
+
+		});
 	}
 
 	@Transactional
@@ -63,7 +88,6 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 			clientRepository.save(client);
 			System.out.println(client);
 		});
-
 	}
 
 	@Transactional
