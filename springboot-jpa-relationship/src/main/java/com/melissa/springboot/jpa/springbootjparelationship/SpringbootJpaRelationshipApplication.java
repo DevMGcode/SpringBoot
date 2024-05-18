@@ -2,8 +2,11 @@ package com.melissa.springboot.jpa.springbootjparelationship;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,8 +33,28 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		oneToManyInvoiceBidireccional();
+		oneToManyInvoiceBidireccionalFindById();
 	}
+
+
+	@Transactional
+	public void oneToManyInvoiceBidireccionalFindById(){
+
+		Optional<Client> optionalClient = clientRepository.findOneALL(1L);
+
+		optionalClient.ifPresent(client ->{
+
+			Invoice invoice1= new Invoice("compras de casa",5000L);
+			Invoice invoice2= new Invoice("compras de oficina",9000L);
+	
+			client.addInvoice(invoice1).addInvoice(invoice2);
+	
+			clientRepository.save(client);
+			System.out.println(client);
+		});
+
+	}
+
 
 	@Transactional
 	public void oneToManyInvoiceBidireccional(){
@@ -55,7 +78,11 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 			Address address1 = new Address("La Luna",1234);
 			Address address2 = new Address("Vasco de lima",9874);
 			
-			client.setAddresses(Arrays.asList(address1,address2));
+			Set <Address> addresses= new HashSet<>();
+			addresses.add(address2);
+			addresses.add(address1);
+			client.setAddresses(addresses);
+
 			clientRepository.save(client);
 			System.out.println(client);
 
@@ -100,7 +127,12 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 			Address address1 = new Address("La Luna",1234);
 			Address address2 = new Address("Vasco de lima",9874);
 			
-			client.setAddresses(Arrays.asList(address1,address2));
+			Set <Address> addresses= new HashSet<>();
+			addresses.add(address2);
+			addresses.add(address1);
+			client.setAddresses(addresses);
+
+			
 			clientRepository.save(client);
 			System.out.println(client);
 		});
