@@ -1,6 +1,8 @@
 package com.melissa.springboot.jpa.springbootjparelationship;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,27 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		removeAddressFindById();
+		oneToManyInvoiceBidireccional();
+	}
+
+	@Transactional
+	public void oneToManyInvoiceBidireccional(){
+		Client client = new Client("Jenny","Caicedo");
+
+		Invoice invoice1= new Invoice("compras de casa",5000L);
+		Invoice invoice2= new Invoice("compras de oficina",9000L);
+
+		List<Invoice> invoices = new ArrayList<>();
+		invoices.add(invoice1);
+		invoices.add(invoice2);
+		client.setInvoices(invoices);
+
+		invoice1.setClient(client);
+		invoice2.setClient(client);
+
+		clientRepository.save(client);
+		System.out.println(client);
+
 	}
 
 	@Transactional
