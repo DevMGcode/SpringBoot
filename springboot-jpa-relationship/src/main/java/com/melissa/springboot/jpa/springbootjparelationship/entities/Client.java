@@ -81,6 +81,12 @@ public class Client {
   public void setInvoices(List<Invoice> invoices) {
     this.invoices = invoices;
   }
+
+  public Client addInvoice(Invoice invoice){
+    invoices.add(invoice);    		
+		invoice.setClient(this);
+		return this;
+  }
   
   
   @Override
