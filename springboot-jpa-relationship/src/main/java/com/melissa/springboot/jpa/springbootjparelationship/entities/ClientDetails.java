@@ -3,6 +3,7 @@ package com.melissa.springboot.jpa.springbootjparelationship.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;
 
@@ -17,7 +18,9 @@ public class ClientDetails {
   private boolean premium;
   private Integer points;
 
- 
+  @OneToOne
+  @JoinColum(name ="id_cliente")
+  private Client client;
 
   public ClientDetails() {
   }
@@ -49,6 +52,14 @@ public class ClientDetails {
   }
 
 
+  public Client getClient() {
+    return client;
+  }
+
+
+  public void setClient(Client client) {
+    this.client = client;
+  }
 
   @Override
   public String toString() {
@@ -56,6 +67,8 @@ public class ClientDetails {
     ", premium=" + premium + 
     ", points=" + points + "}";
   }
+
+
 
 
   
