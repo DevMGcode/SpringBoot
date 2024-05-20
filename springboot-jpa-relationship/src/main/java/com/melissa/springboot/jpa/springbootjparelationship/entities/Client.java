@@ -88,6 +88,10 @@ public class Client {
 		return this;
   }
   
+  public void removeInvoice(Invoice invoice) {
+    this.getInvoices().remove(invoice);
+    invoice.setClient(null);
+  }
   
   @Override
   public String toString() {
@@ -98,6 +102,8 @@ public class Client {
     ", Addresses="+ addresses +
     "}";
   }
+
+ 
 
 
   
