@@ -14,13 +14,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.melissa.springboot.jpa.springbootjparelationship.entities.Student;
 import com.melissa.springboot.jpa.springbootjparelationship.entities.Address;
 import com.melissa.springboot.jpa.springbootjparelationship.entities.Client;
 import com.melissa.springboot.jpa.springbootjparelationship.entities.ClientDetails;
+import com.melissa.springboot.jpa.springbootjparelationship.entities.Course;
 import com.melissa.springboot.jpa.springbootjparelationship.entities.Invoice;
 import com.melissa.springboot.jpa.springbootjparelationship.repositories.ClientDetailsRepository;
 import com.melissa.springboot.jpa.springbootjparelationship.repositories.ClientRepository;
 import com.melissa.springboot.jpa.springbootjparelationship.repositories.InvoiceRepository;
+import com.melissa.springboot.jpa.springbootjparelationship.repositories.StudentRepository;
 
 @SpringBootApplication
 public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
@@ -34,14 +37,35 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 	@Autowired
 	private ClientDetailsRepository clientDetailsRepository;
 
+	@Autowired
+	private StudentRepository studentRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootJpaRelationshipApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		oneToOneBidireccionalFindById();
+		manyToMany();
 	}
+
+	@Transactional
+	public void manyToMany(){
+		Student student1 = new Student("Alex","Lasso");
+		Student student2 = new Student("Rita","Osuna");
+
+		Course course1 = new Course("Curso de Java master","Fabio");
+		Course course2 = new Course("Curso de Spring Boot","Fabio");
+
+		student1.setCourses(Set.of(course1,course2));
+		student2.setCourses(Set.of(course2));
+
+		studentRepository.saveAll(List.of(student1, student2));
+		System.out.println(student1);
+		System.out.println(student2);
+
+	}
+
 
 	@Transactional
 	public void oneToOneBidireccionalFindById(){
