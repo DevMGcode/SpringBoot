@@ -8,8 +8,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "students")
@@ -22,10 +25,16 @@ public class Student {
   private String name;
   private String lastname;
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @JoinTable(
+    name = "tbl_alumnos_cursos",
+    joinColumns = @JoinColumn(name = "alumno_id"),
+    inverseJoinColumns = @JoinColumn(name = "curso_id"),
+    uniqueConstraints = @UniqueConstraint(columnNames = {"alumno_id", "curso_id"})
+  )
   private Set<Course> courses;
 
-  public Student(){
+  public Student() {
     this.courses = new HashSet<>();
   }
 
@@ -71,5 +80,4 @@ public class Student {
   public String toString() {
     return "{id=" + id + ", name=" + name + ", lastname=" + lastname + ", courses=" + courses + "}";
   }
-
 }
