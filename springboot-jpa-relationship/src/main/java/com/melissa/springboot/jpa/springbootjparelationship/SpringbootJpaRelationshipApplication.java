@@ -1,7 +1,5 @@
 package com.melissa.springboot.jpa.springbootjparelationship;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +48,56 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		manyToManyRemove();
+		manyToManyBidireccionalRemove();
+	}
+
+	@Transactional
+	public void manyToManyBidireccionalRemove() {
+		Student student1 = new Student("Alex", "Lasso");
+		Student student2 = new Student("Rita", "Osuna");
+
+		Course course1 = new Course("Curso de Java master", "Fabio");
+		Course course2 = new Course("Curso de Spring Boot", "Fabio");
+
+		student1.addCourse(course1);
+		student1.addCourse(course2);
+		student2.addCourse(course2);
+
+		studentRepository.saveAll(List.of(student1, student2));
+		System.out.println(student1);
+		System.out.println(student2);
+
+		Optional<Student> studenOptionalDb = studentRepository.findOneWithCourses(3L);
+		studenOptionalDb.ifPresent(studentDb -> {
+			Optional<Course> courseOptionalDb = courseRepository.findOneWithStudents(3L);
+			courseOptionalDb.ifPresent(courseDb -> {
+				studentDb.removeCourse(courseDb);
+				studentRepository.save(studentDb);
+				System.out.println(studentDb);
+			});
+		});
+	}
+
+	@Transactional
+	public void manyToManyBidireccional(){
+		Student student1 = new Student("Alex","Lasso");
+		Student student2 = new Student("Rita","Osuna");
+
+		Course course1 = new Course("Curso de Java master","Fabio");
+		Course course2 = new Course("Curso de Spring Boot","Fabio");
+
+/* 		student1.setCourses(Set.of(course1,course2));
+		student2.setCourses(Set.of(course2)); */
+		student1.addCourse(course1);
+		student1.addCourse(course2);
+		student2.addCourse(course2);
+		
+		studentRepository.saveAll(List.of(student1, student2));
+		System.out.println(student1);
+		System.out.println(student2);
+
+		
+
 	}
 
 	@Transactional

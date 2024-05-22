@@ -9,6 +9,8 @@ import com.melissa.springboot.jpa.springbootjparelationship.entities.Student;
 
 public interface StudentRepository extends CrudRepository<Student, Long> {
 
-  @Query("select s from Student s left join fetch s.courses where s.id=?1")
-   Optional<Student> findOneWithCourses(Long id);
+  @Query("SELECT s FROM Student s JOIN FETCH s.courses WHERE s.id = :id")
+   Optional<Student>  findOneWithCourses(Long id);
+
+  
 }
