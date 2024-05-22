@@ -90,6 +90,16 @@
       "projectName": "springboot-jpa-relationship",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringbootCrudApplication<springboot-crud>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.melissa.springboot.app.springbootcrud.SpringbootCrudApplication",
+      "projectName": "springboot-crud",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
