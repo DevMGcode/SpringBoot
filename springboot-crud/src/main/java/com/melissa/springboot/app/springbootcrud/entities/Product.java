@@ -1,5 +1,7 @@
 package com.melissa.springboot.app.springbootcrud.entities;
 
+import com.melissa.springboot.app.springbootcrud.validation.IsRequired;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +29,7 @@ public class Product {
     @NotNull(message = "{NotNull.product.price}")
     private Integer price;
 
-    @NotBlank(message = "{NotBlank.product.description}")
+    @IsRequired
     private String description;
     
  // Getters y setters
